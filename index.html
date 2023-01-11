@@ -26,115 +26,74 @@
   <script>
   const app = new PIXI.Application({ background: 'darkolivegreen' });
   document.body.appendChild(app.view);
-  
   const container = new PIXI.Container();
   app.stage.addChild(container);
-  
-  const _texture = PIXI.Texture.from('ludwigsrobot.png');
-
-  //let robot = PIXI.Sprite.from('ludwigsrobot.png');
-
-  for (let i = 0; i < 1; i++) {
+    const _texture = PIXI.Texture.from('ludwigsrobot.png');
   const texture = new PIXI.Sprite(_texture);
-  texture.anchor.set(0.1);
-  texture.x = (i % 5) * 120;
-  texture.y = Math.floor(i / 5) * 40;
   container.addChild(texture);
-  }      
-
-  // Move container to the center
   container.x = app.screen.width / 2;
   container.y = 500.0
-
   let elapsed = 0.0;
   app.ticker.add((delta) => {
-    // Add the time to our total elapsed time
-    //elapsed += delta;
-    // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-    // by 50 to slow the animation down a bit...
     container.x = app.screen.width / 2;
     container.y = 500.0
   });
-
   function right() {
     let elapsed = 0.0;
     app.ticker.add((delta) => {
-      // Add the time to our total elapsed time
       elapsed += delta;
-      // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-      // by 50 to slow the animation down a bit...
       container.y = container.y
       container.x = container.x
-      container.x += 10.0 * 2.0; //abs(elapsed/20.0) * 10.0;
+      container.x += 10.0 * 2.0;
     });
   }
   function left() {
     let elapsed = 0.0;
     app.ticker.add((delta) => {
-      // Add the time to our total elapsed time
       elapsed += delta;
-      // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-      // by 50 to slow the animation down a bit...
       container.y = container.y
       container.x = container.x
-      container.x -= 10.0 * 2.0; //abs(elapsed/20.0) * 10.0;
+      container.x -= 10.0 * 2.0;
     });
   }
   function up() {
-    //let elapsed = 0.0;
     app.ticker.add((delta) => {
-      // Add the time to our total elapsed time
       elapsed += delta;
-      // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-      // by 50 to slow the animation down a bit...
       container.x = container.x
       container.y = container.y
-      container.y -= 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
+      container.y -= 10.0 + Math.log2(elapsed) * 2.0;
     });
   }
   function down() {
     let elapsed = 0.0;
     app.ticker.add((delta) => {
-      // Add the time to our total elapsed time
       elapsed += delta;
-      // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-      // by 50 to slow the animation down a bit...
       container.x = container.x
       container.y = container.y
-      container.y += 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
+      container.y += 10.0 + Math.log2(elapsed) * 2.0;
     });
   }
   function detectEdgeX() {
     let elapsed = 0.0;
     app.ticker.add((delta) => {
-      // Add the time to our total elapsed time
       elapsed += delta;
-      // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-      // by 50 to slow the animation down a bit...
       if (container.x >= 720.0) {
         container.x = 720.0
-        //container.y = app.screen.height / 2;
       };
       if (container.x <= 15.0) {
         container.x = 15.0
-        //container.y = app.screen.height / 2;
       };
     });        
   };
   function detectEdgeY() {
     let elapsed = 0.0;
     app.ticker.add((delta) => {
-      // Add the time to our total elapsed time
       elapsed += delta;
-      // Update the sprite's X position based on the cosine of our elapsed time.  We divide
-      // by 50 to slow the animation down a bit...
       if (container.y >= 480.0) {
         container.y = 480.0
-        //container.y = app.screen.height / 2;
       };
       if (container.y <= 80.0) {
         container.y = 80.0
-        //container.y = app.screen.height / 2;
       };
 
     });        
@@ -187,13 +146,7 @@
   gravityPull()
   </script>
     
-    <!--button _="on click up()">
-      <span class="material-symbols-outlined">
-        arrow_upward
-        </span>
-    </button-->
     <br>
-
     <!-- https://fonts.google.com/icons -->
     <button _="on click jumpLeft()">
       <span class="material-symbols-outlined">
@@ -211,7 +164,6 @@
         arrow_downward
         </span>
     </button-->
-    <br>
     <!--button _="on click smaller()">
       Smaller
     </button>
