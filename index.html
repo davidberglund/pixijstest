@@ -21,10 +21,9 @@
       }
       </style>  
   </head>
-  <body>
+  <body _="on keyup if the event's key is 'ArrowRight' jumpRight() else if the event's key is 'ArrowLeft' jumpLeft()">
+
   <script>
-  //let app = new PIXI.Application({ width: 840, height: 560 });
-  //let app = new PIXI.Application({ width: 1240, height: 460, background: 'darkolivegreen' });
   const app = new PIXI.Application({ background: 'darkolivegreen' });
   document.body.appendChild(app.view);
   
@@ -33,8 +32,7 @@
   
   const _texture = PIXI.Texture.from('ludwigsrobot.png');
 
-  let robot = PIXI.Sprite.from('ludwigsrobot.png');
-  //app.stage.addChild(robot);
+  //let robot = PIXI.Sprite.from('ludwigsrobot.png');
 
   for (let i = 0; i < 1; i++) {
   const texture = new PIXI.Sprite(_texture);
@@ -65,8 +63,9 @@
       elapsed += delta;
       // Update the sprite's X position based on the cosine of our elapsed time.  We divide
       // by 50 to slow the animation down a bit...
-      container.x += 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
       container.y = container.y
+      container.x = container.x
+      container.x += 10.0 * 2.0; //abs(elapsed/20.0) * 10.0;
     });
   }
   function left() {
@@ -76,8 +75,9 @@
       elapsed += delta;
       // Update the sprite's X position based on the cosine of our elapsed time.  We divide
       // by 50 to slow the animation down a bit...
-      container.x -= 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
       container.y = container.y
+      container.x = container.x
+      container.x -= 10.0 * 2.0; //abs(elapsed/20.0) * 10.0;
     });
   }
   function up() {
@@ -87,8 +87,9 @@
       elapsed += delta;
       // Update the sprite's X position based on the cosine of our elapsed time.  We divide
       // by 50 to slow the animation down a bit...
-      container.y -= 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
       container.x = container.x
+      container.y = container.y
+      container.y -= 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
     });
   }
   function down() {
@@ -98,19 +99,11 @@
       elapsed += delta;
       // Update the sprite's X position based on the cosine of our elapsed time.  We divide
       // by 50 to slow the animation down a bit...
-      container.y += 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
       container.x = container.x
+      container.y = container.y
+      container.y += 10.0 + Math.log2(elapsed) * 2.0; //abs(elapsed/20.0) * 10.0;
     });
   }
-  function bigger() {
-    container.width += 4.0
-    container.height += 4.0
-    };
-  function smaller() {
-    container.width -= 4.0
-    container.height -= 4.0
-    };
-
   function detectEdgeX() {
     let elapsed = 0.0;
     app.ticker.add((delta) => {
@@ -175,26 +168,24 @@
   }    
 
   function jumpRight() {
-    setInterval(moveUp(), 4000);
-    setInterval(moveUp(), 4000);
+    setInterval(moveUp(), 8000);
+    setInterval(moveUp(), 8000);
     setInterval(moveRight(), 4000);
     setInterval(moveRight(), 4000);
     };  
   function jumpLeft() {
-    setInterval(moveUp(), 4000);
-    setInterval(moveUp(), 4000);
+    setInterval(moveUp(), 8000);
+    setInterval(moveUp(), 8000);
     setInterval(moveLeft(), 4000);
     setInterval(moveLeft(), 4000);
   };  
-
   let gravityPull = setInterval(
     function () {
       moveDown();
-    },
-    15);
-  gravityPull()
+  }, 15);
 
-    </script>
+  gravityPull()
+  </script>
     
     <!--button _="on click up()">
       <span class="material-symbols-outlined">
