@@ -69,48 +69,101 @@
         elapsed += delta;
         // Update the sprite's X position based on the cosine of our elapsed time.  We divide
         // by 50 to slow the animation down a bit...
-        container.x = 300.0 //+ Math.cos(elapsed/30.0) * 0.5;
-        container.y = 328.0 //+ Math.cos(elapsed/30.0) * 0.5;
+        container.x = 300.0
+        container.y = 328.0
       });
 
       function right() {
+        let elapsed = 0.0;
         app.ticker.add((delta) => {
           // Add the time to our total elapsed time
           elapsed += delta;
           // Update the sprite's X position based on the cosine of our elapsed time.  We divide
           // by 50 to slow the animation down a bit...
-          
-          container.x += 10.0/* + Math.cos(elapsed/30.0) * 100.0; */
+          container.x += 1.0 + Math.log2(elapsed/5.0) * 2.0; //abs(elapsed/20.0) * 10.0;
         });
       }
       function left() {
+        let elapsed = 0.0;
         app.ticker.add((delta) => {
           // Add the time to our total elapsed time
           elapsed += delta;
           // Update the sprite's X position based on the cosine of our elapsed time.  We divide
           // by 50 to slow the animation down a bit...
-          container.x -= 10.0/* + Math.cos(elapsed/30.0) * 100.0; */
+          container.x -= 1.0 + Math.log2(elapsed/5.0) * 2.0; //abs(elapsed/20.0) * 10.0;
+
         });
       }
       function up() {
+        //let elapsed = 0.0;
         app.ticker.add((delta) => {
           // Add the time to our total elapsed time
           elapsed += delta;
           // Update the sprite's X position based on the cosine of our elapsed time.  We divide
           // by 50 to slow the animation down a bit...
-          container.y -= 10.0/* + Math.cos(elapsed/30.0) * 100.0; */
+          container.y -= 1.0 + Math.log2(elapsed/5.0) * 2.0; //abs(elapsed/20.0) * 10.0;
         });
       }
       function down() {
+        let elapsed = 0.0;
         app.ticker.add((delta) => {
           // Add the time to our total elapsed time
           elapsed += delta;
           // Update the sprite's X position based on the cosine of our elapsed time.  We divide
           // by 50 to slow the animation down a bit...
-          container.y += 10.0/* + Math.cos(elapsed/30.0) * 100.0; */
+          container.y += 1.0 + Math.log2(elapsed/5.0) * 2.0; //abs(elapsed/20.0) * 10.0;
         });
       }
+      function bigger() {
+        container.width += 4.0
+        container.height += 4.0
+        };
+      function smaller() {
+        container.width -= 4.0
+        container.height -= 4.0
+        };
 
+      function detectEdgeX() {
+        let elapsed = 0.0;
+        app.ticker.add((delta) => {
+          // Add the time to our total elapsed time
+          elapsed += delta;
+          // Update the sprite's X position based on the cosine of our elapsed time.  We divide
+          // by 50 to slow the animation down a bit...
+          if (container.x >= 760.0) {
+            container.x = 760.0
+            //container.y = app.screen.height / 2;
+          };
+          if (container.x <= 60.0) {
+            container.x = 60.0
+            //container.y = app.screen.height / 2;
+          };
+        });        
+      };
+      function detectEdgeY() {
+        let elapsed = 0.0;
+        app.ticker.add((delta) => {
+          // Add the time to our total elapsed time
+          elapsed += delta;
+          // Update the sprite's X position based on the cosine of our elapsed time.  We divide
+          // by 50 to slow the animation down a bit...
+          if (container.y >= 545.0) {
+            container.y = 545.0
+            //container.y = app.screen.height / 2;
+          };
+          if (container.y <= 80.0) {
+            container.y = 80.0
+            //container.y = app.screen.height / 2;
+          };
+
+        });        
+      };
+
+    let mainLoop = setInterval(
+      function() {
+        detectEdgeX();
+        detectEdgeY();
+      }, 40);
 
     </script>
     
@@ -119,8 +172,8 @@
         arrow_upward
         </span>
     </button>
-
     <br>
+
     <!-- https://fonts.google.com/icons -->
     <button _="on click left()">
       <span class="material-symbols-outlined">
@@ -138,7 +191,13 @@
         arrow_downward
         </span>
     </button>
-
+    <br>
+    <!--button _="on click smaller()">
+      Smaller
+    </button>
+    <button _="on click bigger()">
+      Bigger
+    </button-->
 
   </body>
 </html>
