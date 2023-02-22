@@ -21,7 +21,7 @@
       }
       </style>  
   </head>
-  <body _="on keyup if the event's key is 'ArrowRight' jumpRight() else if the event's key is 'ArrowLeft' jumpLeft()">
+  <body _="on keyup if the event's key is 'ArrowRight' jumpRight() else if the event's key is 'ArrowLeft' jumpLeft() else if the event's key is 'ArrowDown' down() else if the event's key is 'ArrowUp' up()">
 
   <script>
   const app = new PIXI.Application({ background: 'darkolivegreen' });
@@ -141,8 +141,7 @@
   let gravityPull = setInterval(
     function () {
       moveDown();
-  }, 15);
-
+  }, 300);
   gravityPull()
   </script>
     
